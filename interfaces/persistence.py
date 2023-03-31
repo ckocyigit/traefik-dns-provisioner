@@ -1,24 +1,22 @@
 import yaml
-from yaml.loader import SafeLoader
+from tdp_exceptions import StateFileDoesNotExist
 
 class Persistence():
 
     def __init__(self, location):
         self.location = location
-
-    def checkFileExistence(self):
-        open(self.location, "a")
+        with open(self.location, "r") as f:
+            if len(f.read()) < 0:
+                raise StateFileDoesNotExist
 
     def write(self, data):
-        self.checkFileExistence()
         with open(self.location, 'w') as f:
             response = yaml.dump(data, f, sort_keys=False, default_flow_style=False)
         return response
 
     def read(self):
-        self.checkFileExistence()
-        with open(self.location) as f:
-            content = yaml.full_load(f)
+        with open(self.location, 'r') as f:
+            content = yaml.full_load(f.read())
         return content
 
     def saveResponse(self, bulk_id, description, domains, update_url):

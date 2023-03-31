@@ -3,8 +3,6 @@ import docker
 def handleTraefikHostsLabel(label, subfolders = False):
     if '&&' in label and subfolders:
         return (label.split('`')[1] + label.split('`')[3])
-    elif '+' in label:
-        logger.info("Skipping host entries")
     else:
         return (label.split('`')[1])
 
@@ -45,6 +43,6 @@ def getHostsDocker():
     for app in data:
         labels = app[2]
         for label in labels:
-            if "rule" in label[0]:
+            if "rule" in label[0] and "Host" in label[1]:
                 response.append(handleTraefikHostsLabel(label[1]))
     return list(set(response))

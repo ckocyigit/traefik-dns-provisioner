@@ -5,3 +5,7 @@ class DNSUpdateError(Exception):
 class IonosApiRateExceedanceError(Exception):
     """ Raised when IONOS DNS Update failed"""
     pass    
+
+class StateFileDoesNotExist(Exception):
+    """ Raised when IONOS DNS Update failed"""
+    pass    

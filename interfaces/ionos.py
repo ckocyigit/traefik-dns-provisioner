@@ -17,7 +17,7 @@ class Ionos():
         self.zonesAPI = ZonesApi(api_client=apiClient)
         self.recordsAPI = RecordsApi(api_client=apiClient)
 
-    def registerDomains(self, domains, description = f"Updated By TDP at {datetime.now().strftime('%d.%m.%Y %H:%M:%S')}"):
+    def register_domains(self, domains, description = f"Updated By TDP at {datetime.now().strftime('%d.%m.%Y %H:%M:%S')}"):
         dnsreq = DynDnsRequest(domains=domains, description=description)
         response = self.dynamicAPI.activate_dyn_dns(dnsreq)
         return response

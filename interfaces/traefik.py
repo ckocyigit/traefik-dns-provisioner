@@ -1,6 +1,6 @@
 import yaml
 from interfaces.logger import appLogger
-from interfaces.docker import handleTraefikHostsLabel
+from interfaces.container import handleTraefikHostsLabel
 
 logger = appLogger()
 
